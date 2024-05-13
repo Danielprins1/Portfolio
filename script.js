@@ -22,3 +22,28 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+document.addEventListener("DOMContentLoaded", function() {
+    const carouselSlide = document.querySelector(".carousel-slide");
+    const images = document.querySelectorAll(".carousel-slide img");
+
+    let counter = 0;
+    const slideWidth = images[0].clientWidth;
+
+    function slideNext() {
+        if (counter >= images.length - 1) return;
+        counter++;
+        carouselSlide.style.transition = "transform 0.5s ease-in-out";
+        carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+    }
+
+    function slidePrev() {
+        if (counter <= 0) return;
+        counter--;
+        carouselSlide.style.transition = "transform 0.5s ease-in-out";
+        carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+    }
+
+    document.getElementById("nextBtn").addEventListener("click", slideNext);
+    document.getElementById("prevBtn").addEventListener("click", slidePrev);
+});
+
